@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Models</h1>
+<table class='w3-table-all'>
+<tr>
+    <th>id</th>
+    <th>Filename</th>
+    <th>Delete?</th>
+</tr>
+    <form action="{{url_for('delete')}}" method="post">
+    {% for item in modelfiles %}
+    <tr>
+        <td>
+            {{ item.id }}
+        </td>
+        <td>
+            {{ item.filename }}
+        </td>
+        <td>
+            <form action="/delete" method="post">
+                <input type="hidden" name="id" value="{{item.id}}">
+                <input type="submit" value="delete">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </form>
+</table>
+{% endblock %}
